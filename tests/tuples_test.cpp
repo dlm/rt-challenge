@@ -75,22 +75,35 @@ SCENARIO("Subtracting two points", "") {
         Tuple p2 = point(5, 6, 7);
 
         THEN("p1 - p2 = vector(-2, -4, -6)") {
-            REQUIRE(p1 - p2 == Tuple::make_vector(-2, -4, -6));
+            REQUIRE(p1 - p2 == vector(-2, -4, -6));
         }
     }
 }
 
-//
-// Scenario: Subtracting a vector from a point
-//   Given p ← point(3, 2, 1)
-//     And v ← vector(5, 6, 7)
-//   Then p - v = point(-2, -4, -6)
-//
-// Scenario: Subtracting two vectors
-//   Given v1 ← vector(3, 2, 1)
-//     And v2 ← vector(5, 6, 7)
-//   Then v1 - v2 = vector(-2, -4, -6)
-//
+
+SCENARIO("Subtracting a vector from a point", "") {
+    GIVEN("p ← point(3, 2, 1) & v ← vector(5, 6, 7)") {
+        Tuple p = point(3, 2, 1);
+        Tuple v = vector(5, 6, 7);
+
+        THEN("p - v = point(-2, -4, -6)") {
+            REQUIRE(p - v == point(-2, -4, -6));
+        }
+    }
+}
+
+
+SCENARIO("Subtracting two vectors", "") {
+    GIVEN("v1 ← vector(3, 2, 1) & v2 ← vector(5, 6, 7)") {
+        Tuple v1 = vector(3, 2, 1);
+        Tuple v2 = vector(5, 6, 7);
+
+        THEN("v1 - v2 = vector(-2, -4, -6)") {
+            REQUIRE(v1 - v2 == vector(-2, -4, -6));
+        }
+    }
+}
+
 // Scenario: Subtracting a vector from the zero vector
 //   Given zero ← vector(0, 0, 0)
 //     And v ← vector(1, -2, 3)
