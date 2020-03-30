@@ -10,3 +10,4 @@ set(CSCI441_DIR ${RTChallenge_SOURCE_DIR})
 include_directories(${CSCI441_DIR}/include)
 
 add_subdirectory(tests)
+add_subdirectory(apps)
