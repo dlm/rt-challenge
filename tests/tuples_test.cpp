@@ -2,6 +2,14 @@
 
 #include <csci441/tuple.h>
 
+Tuple point(float x, float y, float z) {
+    return Tuple::make_point(x, y, z);
+}
+
+Tuple vector(float x, float y, float z) {
+    return Tuple::make_vector(x, y, z);
+}
+
 SCENARIO("A tuple with w=1.0 is a point", "") {
     GIVEN("a ← tuple(4.3, -4.2, 3.1, 1.0)") {
         Tuple a(4.3, -4.2, 3.1, 1.0);
@@ -32,7 +40,7 @@ SCENARIO("A tuple with w=0 is a vector", "") {
 
 SCENARIO("point() creates tuples with w=1", "") {
     GIVEN("p ← point(4, -4, 3)") {
-        Tuple p = Tuple::make_point(4, -4, 3);
+        Tuple p = point(4, -4, 3);
 
         THEN("p = tuple(4, -4, 3, 1)") { REQUIRE(p == Tuple(4, -4, 3, 1)); }
     }
@@ -41,7 +49,7 @@ SCENARIO("point() creates tuples with w=1", "") {
 
 SCENARIO("point() creates tuples with w=0", "") {
     GIVEN("v ← vector(4, -4, 3)") {
-        Tuple v = Tuple::make_vector(4, -4, 3);
+        Tuple v = vector(4, -4, 3);
 
         THEN("v = tuple(4, -4, 3, 0)") { REQUIRE(v == Tuple(4, -4, 3, 0)); }
     }
@@ -60,10 +68,11 @@ SCENARIO("Adding two tuples", "") {
     }
 }
 
+
 SCENARIO("Subtracting two points", "") {
     GIVEN("p1 ← point(3, 2, 1) & p2 ← point(5, 6, 7)") {
-        Tuple p1 = Tuple::make_point(3, 2, 1);
-        Tuple p2 = Tuple::make_point(5, 6, 7);
+        Tuple p1 = point(3, 2, 1);
+        Tuple p2 = point(5, 6, 7);
 
         THEN("p1 - p2 = vector(-2, -4, -6)") {
             REQUIRE(p1 - p2 == Tuple::make_vector(-2, -4, -6));
