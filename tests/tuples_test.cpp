@@ -60,11 +60,17 @@ SCENARIO("Adding two tuples", "") {
     }
 }
 
-//
-// Scenario: Subtracting two points
-//   Given p1 ← point(3, 2, 1)
-//     And p2 ← point(5, 6, 7)
-//   Then p1 - p2 = vector(-2, -4, -6)
+SCENARIO("Subtracting two points", "") {
+    GIVEN("p1 ← point(3, 2, 1) & p2 ← point(5, 6, 7)") {
+        Tuple p1 = Tuple::make_point(3, 2, 1);
+        Tuple p2 = Tuple::make_point(5, 6, 7);
+
+        THEN("p1 - p2 = vector(-2, -4, -6)") {
+            REQUIRE(p1 - p2 == Tuple::make_vector(-2, -4, -6));
+        }
+    }
+}
+
 //
 // Scenario: Subtracting a vector from a point
 //   Given p ← point(3, 2, 1)
