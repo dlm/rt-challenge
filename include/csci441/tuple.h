@@ -39,6 +39,14 @@ public:
         return Tuple(0,0,0,0) - *this;
     }
 
+    Tuple operator*(float s) const {
+        return Tuple(s*x,s*y,s*z,s*w);
+    }
+
+    Tuple operator/(float s) const {
+        return *this * (1/s);
+    }
+
     bool operator==(const Tuple& other) const {
         return fp_eq(x, other.x)
             && fp_eq(y, other.y)

@@ -128,18 +128,38 @@ SCENARIO("Negating a tuple", "") {
 }
 
 
-// Scenario: Multiplying a tuple by a scalar
-//   Given a ← tuple(1, -2, 3, -4)
-//   Then a * 3.5 = tuple(3.5, -7, 10.5, -14)
-//
-// Scenario: Multiplying a tuple by a fraction
-//   Given a ← tuple(1, -2, 3, -4)
-//   Then a * 0.5 = tuple(0.5, -1, 1.5, -2)
-//
-// Scenario: Dividing a tuple by a scalar
-//   Given a ← tuple(1, -2, 3, -4)
-//   Then a / 2 = tuple(0.5, -1, 1.5, -2)
-//
+SCENARIO("Multiplying a tuple by a scalar", "") {
+    GIVEN("a ← tuple(1, -2, 3, -4)") {
+        Tuple a(1, -2, 3, -4);
+
+        THEN("a * 3.5 = tuple(3.5, -7, 10.5, -14)") {
+            REQUIRE(a * 3.5 == Tuple(3.5, -7, 10.5, -14));
+        }
+    }
+}
+
+
+SCENARIO("Multiplying a tuple by a fraction", "") {
+    GIVEN("a ← tuple(1, -2, 3, -4)") {
+        Tuple a(1, -2, 3, -4);
+
+        THEN("a * 0.5 = tuple(0.5, -1, 1.5, -2)") {
+            REQUIRE(a * 0.5 == Tuple(0.5, -1, 1.5, -2));
+        }
+    }
+}
+
+
+SCENARIO("Dividing a tuple by a scalar", "") {
+    GIVEN("a ← tuple(1, -2, 3, -4)") {
+        Tuple a(1, -2, 3, -4);
+
+        THEN("a / 2 = tuple(0.5, -1, 1.5, -2)") {
+            REQUIRE(a / 2 == Tuple(0.5, -1, 1.5, -2));
+        }
+    }
+}
+
 // Scenario: Computing the magnitude of vector(1, 0, 0)
 //   Given v ← vector(1, 0, 0)
 //   Then magnitude(v) = 1
