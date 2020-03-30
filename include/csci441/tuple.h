@@ -81,4 +81,13 @@ Tuple normalize(const Tuple& t) {
     return t / magnitude(t);
 }
 
+
+Tuple cross(const Tuple& a, const Tuple& b) {
+    return Tuple::make_vector(
+            a.y * b.z - a.z * b.y,
+            a.z * b.x - a.x * b.z,
+            a.x * b.y - a.y * b.x
+    );
+}
+
 #endif

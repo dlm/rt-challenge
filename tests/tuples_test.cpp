@@ -262,13 +262,21 @@ SCENARIO("The dot product of two tuples", "") {
     }
 }
 
-//
-// Scenario: The cross product of two vectors
-//   Given a ← vector(1, 2, 3)
-//     And b ← vector(2, 3, 4)
-//   Then cross(a, b) = vector(-1, 2, -1)
-//     And cross(b, a) = vector(1, -2, 1)
-//
+SCENARIO("The cross product of two vectors", "") {
+    GIVEN("a ← vector(1, 2, 3) & b ← vector(2, 3, 4)") {
+        Tuple a = vector(1, 2, 3);
+        Tuple b = vector(2, 3, 4);
+
+        THEN("cross(a, b) = vector(-1, 2, -1)") {
+            REQUIRE(cross(a, b) == vector(-1, 2, -1));
+        }
+        AND_THEN("cross(b, a) = vector(1, -2, 1)") {
+            REQUIRE(cross(b, a) == vector(1, -2, 1));
+        }
+    }
+}
+
+
 // Scenario: Colors are (red, green, blue) tuples
 //   Given c ← color(-0.5, 0.4, 1.7)
 //   Then c.red = -0.5
