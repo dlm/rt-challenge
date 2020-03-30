@@ -27,6 +27,10 @@ public:
     bool is_point() const { return !is_vector(); }
     bool is_vector() const { return w == 0; }
 
+    Tuple operator+(const Tuple& other) const {
+        return Tuple(x+other.x, y+other.y, z+other.z, w+other.w);
+    }
+
     bool operator==(const Tuple& other) const {
         return fp_eq(x, other.x)
             && fp_eq(y, other.y)

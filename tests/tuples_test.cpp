@@ -49,10 +49,17 @@ SCENARIO("point() creates tuples with w=0", "") {
 
 
 
-// Scenario: Adding two tuples
-//   Given a1 ← tuple(3, -2, 5, 1)
-//     And a2 ← tuple(-2, 3, 1, 0)
-//    Then a1 + a2 = tuple(1, 1, 6, 1)
+SCENARIO("Adding two tuples", "") {
+    GIVEN("a1 ← tuple(3, -2, 5, 1) & a2 ← tuple(-2, 3, 1, 0)") {
+        Tuple a1(3, -2, 5, 1);
+        Tuple a2(-2, 3, 1, 0);
+
+        THEN("a1 + a2 = tuple(1, 1, 6, 1)") {
+            REQUIRE(a1 + a2 == Tuple(1, 1, 6, 1));
+        }
+    }
+}
+
 //
 // Scenario: Subtracting two points
 //   Given p1 ← point(3, 2, 1)
