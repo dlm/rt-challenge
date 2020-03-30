@@ -13,6 +13,9 @@ book would be a good opportunity for them to see it in action.
 
 So, let's see how this goes!
 
+Note, after each section, I will create a tag so that it is easy to hop to
+different points in the project.
+
 ## Project organization
 
 - deps: project dependencies.  I am going to try to use header files only
