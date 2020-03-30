@@ -215,24 +215,53 @@ SCENARIO("Computing the magnitude of vector(-1, -2, -3)", "") {
     }
 }
 
-// Scenario: Normalizing vector(4, 0, 0) gives (1, 0, 0)
-//   Given v ← vector(4, 0, 0)
-//   Then normalize(v) = vector(1, 0, 0)
-//
-// Scenario: Normalizing vector(1, 2, 3)
-//   Given v ← vector(1, 2, 3)
-//                                   # vector(1/√14,   2/√14,   3/√14)
-//   Then normalize(v) = approximately vector(0.26726, 0.53452, 0.80178)
-//
-// Scenario: The magnitude of a normalized vector
-//   Given v ← vector(1, 2, 3)
-//   When norm ← normalize(v)
-//   Then magnitude(norm) = 1
-//
-// Scenario: The dot product of two tuples
-//   Given a ← vector(1, 2, 3)
-//     And b ← vector(2, 3, 4)
-//   Then dot(a, b) = 20
+SCENARIO("Normalizing vector(4, 0, 0) gives (1, 0, 0)", "") {
+    GIVEN("v ← vector(4, 0, 0)") {
+        Tuple v = vector(4, 0, 0);
+
+        THEN("normalize(v) = vector(1, 0, 0)") {
+            REQUIRE(normalize(v) == vector(1, 0, 0));
+        }
+    }
+}
+
+SCENARIO("Normalizing vector(1, 2, 3)", "") {
+    GIVEN("v ← vector(1, 2, 3)") {
+        Tuple v = vector(1, 2, 3);
+
+        THEN("normalize(v) = approximately vector(0.26726, 0.53452, 0.80178)") {
+            REQUIRE(normalize(v) == vector(0.26726, 0.53452, 0.80178));
+        }
+    }
+}
+
+
+SCENARIO("The magnitude of a normalized vector", "") {
+    GIVEN("v ← vector(1, 2, 3)") {
+        Tuple v = vector(1, 2, 3);
+
+        WHEN("norm ← normalize(v)") {
+            Tuple norm = normalize(v);
+
+            THEN("magnitude(norm) = 1") {
+                REQUIRE(magnitude(norm) == Approx(1));
+            }
+        }
+    }
+}
+
+
+SCENARIO("The dot product of two tuples", "") {
+    GIVEN("a ← vector(1, 2, 3) & b ← vector(2, 3, 4)") {
+        Tuple a = vector(1, 2, 3);
+        Tuple b = vector(2, 3, 4);
+
+        THEN("dot(a, b) = 20") {
+            REQUIRE(dot(a, b) == Approx(20));
+        }
+    }
+}
+
 //
 // Scenario: The cross product of two vectors
 //   Given a ← vector(1, 2, 3)

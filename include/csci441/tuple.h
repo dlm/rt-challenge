@@ -66,9 +66,17 @@ public:
     }
 };
 
-float magnitude(const Tuple& t) {
-    return std::sqrt(t.x*t.x + t.y*t.y + t.z*t.z + t.w*t.w);
+float dot(const Tuple& t1, const Tuple& t2) {
+    return t1.x*t2.x + t1.y*t2.y + t1.z*t2.z + t1.w*t2.w;
 }
 
+float magnitude(const Tuple& t) {
+    return std::sqrt(dot(t, t));
+}
+
+
+Tuple normalize(const Tuple& t) {
+    return t / magnitude(t);
+}
 
 #endif
