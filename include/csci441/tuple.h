@@ -44,7 +44,7 @@ public:
     }
 
     Tuple operator/(float s) const {
-        return *this * (1/s);
+        return (*this) * (1/s);
     }
 
     bool operator==(const Tuple& other) const {
