@@ -24,7 +24,7 @@ public:
         return Tuple(x, y, z, 0.0);
     }
 
-    bool is_point() const { return !is_vector(); }
+    bool is_point() const { return w == 1; }
     bool is_vector() const { return w == 0; }
 
     Tuple operator+(const Tuple& other) const {
