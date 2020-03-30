@@ -35,6 +35,10 @@ public:
         return Tuple(x-other.x, y-other.y, z-other.z, w-other.w);
     }
 
+    Tuple operator-() const {
+        return Tuple(0,0,0,0) - *this;
+    }
+
     bool operator==(const Tuple& other) const {
         return fp_eq(x, other.x)
             && fp_eq(y, other.y)

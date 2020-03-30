@@ -104,15 +104,30 @@ SCENARIO("Subtracting two vectors", "") {
     }
 }
 
-// Scenario: Subtracting a vector from the zero vector
-//   Given zero ← vector(0, 0, 0)
-//     And v ← vector(1, -2, 3)
-//   Then zero - v = vector(-1, 2, -3)
-//
-// Scenario: Negating a tuple
-//   Given a ← tuple(1, -2, 3, -4)
-//   Then -a = tuple(-1, 2, -3, 4)
-//
+
+SCENARIO("Subtracting a vector from the zero vector") {
+    GIVEN("zero ← vector(0, 0, 0) & v ← vector(1, -2, 3)") {
+        Tuple zero = vector(0, 0, 0);
+        Tuple v = vector(1, -2, 3);
+
+        THEN("zero - v = vector(-1, 2, -3)") {
+            REQUIRE(zero - v == vector(-1, 2, -3));
+        }
+    }
+}
+
+
+SCENARIO("Negating a tuple", "") {
+    GIVEN("a ← tuple(1, -2, 3, -4)") {
+        Tuple a(1, -2, 3, -4);
+
+        THEN("-a = tuple(-1, 2, -3, 4)") {
+            REQUIRE(-a == Tuple(-1, 2, -3, 4));
+        }
+    }
+}
+
+
 // Scenario: Multiplying a tuple by a scalar
 //   Given a ← tuple(1, -2, 3, -4)
 //   Then a * 3.5 = tuple(3.5, -7, 10.5, -14)
