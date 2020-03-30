@@ -2,8 +2,15 @@
 #define _CSCI441_TUPLE_H_
 
 #include <sstream>
+#include <cmath>
+
 
 class Tuple {
+private:
+    bool fp_eq(float a, float b, float eps=0.00001) const {
+        return std::abs(a-b) < eps;
+    }
+
 public:
     float x, y, z, w;
 
@@ -21,10 +28,10 @@ public:
     bool is_vector() const { return w == 0; }
 
     bool operator==(const Tuple& other) const {
-        return x == other.x
-            && y == other.y
-            && z == other.z
-            && w == other.w;
+        return fp_eq(x, other.x)
+            && fp_eq(y, other.y)
+            && fp_eq(z, other.z)
+            && fp_eq(w, other.w);
     }
 
     std::string to_string() const {
@@ -39,11 +46,5 @@ public:
     }
 };
 
-
-template <typename Stringable>
-std::ostream& operator<<(std::ostream& os, const Stringable& s) {
-    os << s.to_string();
-    return os;
-}
 
 #endif
