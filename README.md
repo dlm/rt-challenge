@@ -24,3 +24,4 @@ different points in the project.
   actual code.
 - tests: test files.  Any file named `*_test.cpp` will be added to the test
   suite.
+- apps: putting it together sections at the end of each chapter
