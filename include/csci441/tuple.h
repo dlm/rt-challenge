@@ -90,4 +90,8 @@ Tuple cross(const Tuple& a, const Tuple& b) {
     );
 }
 
+
+typedef Tuple Point;
+typedef Tuple Vector;
+
 #endif
