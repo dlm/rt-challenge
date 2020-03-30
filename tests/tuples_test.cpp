@@ -160,26 +160,61 @@ SCENARIO("Dividing a tuple by a scalar", "") {
     }
 }
 
-// Scenario: Computing the magnitude of vector(1, 0, 0)
-//   Given v ← vector(1, 0, 0)
-//   Then magnitude(v) = 1
-//
-// Scenario: Computing the magnitude of vector(0, 1, 0)
-//   Given v ← vector(0, 1, 0)
-//   Then magnitude(v) = 1
-//
-// Scenario: Computing the magnitude of vector(0, 0, 1)
-//   Given v ← vector(0, 0, 1)
-//   Then magnitude(v) = 1
-//
-// Scenario: Computing the magnitude of vector(1, 2, 3)
-//   Given v ← vector(1, 2, 3)
-//   Then magnitude(v) = √14
-//
-// Scenario: Computing the magnitude of vector(-1, -2, -3)
-//   Given v ← vector(-1, -2, -3)
-//   Then magnitude(v) = √14
-//
+
+SCENARIO("Computing the magnitude of vector(1, 0, 0)", "") {
+    GIVEN("v ← vector(1, 0, 0)") {
+        Tuple v = vector(1, 0, 0);
+
+        THEN("magnitude(v) = 1") {
+            REQUIRE(magnitude(v) == 1);
+        }
+    }
+}
+
+
+SCENARIO("Computing the magnitude of vector(0, 1, 0)", "") {
+    GIVEN("v ← vector(0, 1, 0)") {
+        Tuple v = vector(0, 1, 0);
+
+        THEN("magnitude(v) = 1") {
+            REQUIRE(magnitude(v) == 1);
+        }
+    }
+}
+
+
+SCENARIO("Computing the magnitude of vector(0, 0, 1)", "") {
+    GIVEN("v ← vector(0, 0, 1)") {
+        Tuple v = vector(0, 0, 1);
+
+        THEN("magnitude(v) = 1") {
+            REQUIRE(magnitude(v) == 1);
+        }
+    }
+}
+
+
+SCENARIO("Computing the magnitude of vector(1, 2, 3)", "") {
+    GIVEN("v ← vector(1, 2, 3)") {
+        Tuple v = vector(1, 2, 3);
+
+        THEN("magnitude(v) = √14") {
+            REQUIRE(magnitude(v) == Approx(std::sqrt(14)));
+        }
+    }
+}
+
+
+SCENARIO("Computing the magnitude of vector(-1, -2, -3)", "") {
+    GIVEN("v ← vector(-1, -2, -3)") {
+        Tuple v = vector(-1, -2, -3);
+
+        THEN("magnitude(v) = √14") {
+            REQUIRE(magnitude(v) == Approx(std::sqrt(14)));
+        }
+    }
+}
+
 // Scenario: Normalizing vector(4, 0, 0) gives (1, 0, 0)
 //   Given v ← vector(4, 0, 0)
 //   Then normalize(v) = vector(1, 0, 0)

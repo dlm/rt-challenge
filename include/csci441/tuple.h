@@ -66,5 +66,9 @@ public:
     }
 };
 
+float magnitude(const Tuple& t) {
+    return std::sqrt(t.x*t.x + t.y*t.y + t.z*t.z + t.w*t.w);
+}
+
 
 #endif
