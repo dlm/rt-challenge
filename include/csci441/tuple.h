@@ -12,7 +12,10 @@ private:
     }
 
 public:
-    float x, y, z, w;
+    union { float x; float r; };
+    union { float y; float g; };
+    union { float z; float b; };
+    float w;
 
     Tuple(float x, float y, float z, float w) : x(x), y(y), z(z), w(w) { }
 
@@ -22,6 +25,10 @@ public:
 
     static Tuple make_vector(float x, float y, float z) {
         return Tuple(x, y, z, 0.0);
+    }
+
+    static Tuple make_color(float r, float g, float b) {
+        return Tuple(r, g, b, 0.0);
     }
 
     bool is_point() const { return w == 1; }
@@ -90,8 +97,8 @@ Tuple cross(const Tuple& a, const Tuple& b) {
     );
 }
 
-
 typedef Tuple Point;
 typedef Tuple Vector;
+typedef Tuple Color;
 
 #endif
