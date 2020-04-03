@@ -2,11 +2,11 @@
 
 #include <csci441/tuple.h>
 
-Tuple point(float x, float y, float z) {
+Point point(float x, float y, float z) {
     return Tuple::make_point(x, y, z);
 }
 
-Tuple vector(float x, float y, float z) {
+Vector vector(float x, float y, float z) {
     return Tuple::make_vector(x, y, z);
 }
 
@@ -40,7 +40,7 @@ SCENARIO("A tuple with w=0 is a vector", "") {
 
 SCENARIO("point() creates tuples with w=1", "") {
     GIVEN("p ← point(4, -4, 3)") {
-        Tuple p = point(4, -4, 3);
+        Point p = point(4, -4, 3);
 
         THEN("p = tuple(4, -4, 3, 1)") { REQUIRE(p == Tuple(4, -4, 3, 1)); }
     }
@@ -49,7 +49,7 @@ SCENARIO("point() creates tuples with w=1", "") {
 
 SCENARIO("point() creates tuples with w=0", "") {
     GIVEN("v ← vector(4, -4, 3)") {
-        Tuple v = vector(4, -4, 3);
+        Vector v = vector(4, -4, 3);
 
         THEN("v = tuple(4, -4, 3, 0)") { REQUIRE(v == Tuple(4, -4, 3, 0)); }
     }
@@ -71,8 +71,8 @@ SCENARIO("Adding two tuples", "") {
 
 SCENARIO("Subtracting two points", "") {
     GIVEN("p1 ← point(3, 2, 1) & p2 ← point(5, 6, 7)") {
-        Tuple p1 = point(3, 2, 1);
-        Tuple p2 = point(5, 6, 7);
+        Point p1 = point(3, 2, 1);
+        Point p2 = point(5, 6, 7);
 
         THEN("p1 - p2 = vector(-2, -4, -6)") {
             REQUIRE(p1 - p2 == vector(-2, -4, -6));
@@ -83,8 +83,8 @@ SCENARIO("Subtracting two points", "") {
 
 SCENARIO("Subtracting a vector from a point", "") {
     GIVEN("p ← point(3, 2, 1) & v ← vector(5, 6, 7)") {
-        Tuple p = point(3, 2, 1);
-        Tuple v = vector(5, 6, 7);
+        Point p = point(3, 2, 1);
+        Vector v = vector(5, 6, 7);
 
         THEN("p - v = point(-2, -4, -6)") {
             REQUIRE(p - v == point(-2, -4, -6));
@@ -95,8 +95,8 @@ SCENARIO("Subtracting a vector from a point", "") {
 
 SCENARIO("Subtracting two vectors", "") {
     GIVEN("v1 ← vector(3, 2, 1) & v2 ← vector(5, 6, 7)") {
-        Tuple v1 = vector(3, 2, 1);
-        Tuple v2 = vector(5, 6, 7);
+        Vector v1 = vector(3, 2, 1);
+        Vector v2 = vector(5, 6, 7);
 
         THEN("v1 - v2 = vector(-2, -4, -6)") {
             REQUIRE(v1 - v2 == vector(-2, -4, -6));
@@ -107,8 +107,8 @@ SCENARIO("Subtracting two vectors", "") {
 
 SCENARIO("Subtracting a vector from the zero vector") {
     GIVEN("zero ← vector(0, 0, 0) & v ← vector(1, -2, 3)") {
-        Tuple zero = vector(0, 0, 0);
-        Tuple v = vector(1, -2, 3);
+        Vector zero = vector(0, 0, 0);
+        Vector v = vector(1, -2, 3);
 
         THEN("zero - v = vector(-1, 2, -3)") {
             REQUIRE(zero - v == vector(-1, 2, -3));
@@ -163,7 +163,7 @@ SCENARIO("Dividing a tuple by a scalar", "") {
 
 SCENARIO("Computing the magnitude of vector(1, 0, 0)", "") {
     GIVEN("v ← vector(1, 0, 0)") {
-        Tuple v = vector(1, 0, 0);
+        Vector v = vector(1, 0, 0);
 
         THEN("magnitude(v) = 1") {
             REQUIRE(magnitude(v) == 1);
@@ -174,7 +174,7 @@ SCENARIO("Computing the magnitude of vector(1, 0, 0)", "") {
 
 SCENARIO("Computing the magnitude of vector(0, 1, 0)", "") {
     GIVEN("v ← vector(0, 1, 0)") {
-        Tuple v = vector(0, 1, 0);
+        Vector v = vector(0, 1, 0);
 
         THEN("magnitude(v) = 1") {
             REQUIRE(magnitude(v) == 1);
@@ -185,7 +185,7 @@ SCENARIO("Computing the magnitude of vector(0, 1, 0)", "") {
 
 SCENARIO("Computing the magnitude of vector(0, 0, 1)", "") {
     GIVEN("v ← vector(0, 0, 1)") {
-        Tuple v = vector(0, 0, 1);
+        Vector v = vector(0, 0, 1);
 
         THEN("magnitude(v) = 1") {
             REQUIRE(magnitude(v) == 1);
@@ -196,7 +196,7 @@ SCENARIO("Computing the magnitude of vector(0, 0, 1)", "") {
 
 SCENARIO("Computing the magnitude of vector(1, 2, 3)", "") {
     GIVEN("v ← vector(1, 2, 3)") {
-        Tuple v = vector(1, 2, 3);
+        Vector v = vector(1, 2, 3);
 
         THEN("magnitude(v) = √14") {
             REQUIRE(magnitude(v) == Approx(std::sqrt(14)));
@@ -207,7 +207,7 @@ SCENARIO("Computing the magnitude of vector(1, 2, 3)", "") {
 
 SCENARIO("Computing the magnitude of vector(-1, -2, -3)", "") {
     GIVEN("v ← vector(-1, -2, -3)") {
-        Tuple v = vector(-1, -2, -3);
+        Vector v = vector(-1, -2, -3);
 
         THEN("magnitude(v) = √14") {
             REQUIRE(magnitude(v) == Approx(std::sqrt(14)));
@@ -217,7 +217,7 @@ SCENARIO("Computing the magnitude of vector(-1, -2, -3)", "") {
 
 SCENARIO("Normalizing vector(4, 0, 0) gives (1, 0, 0)", "") {
     GIVEN("v ← vector(4, 0, 0)") {
-        Tuple v = vector(4, 0, 0);
+        Vector v = vector(4, 0, 0);
 
         THEN("normalize(v) = vector(1, 0, 0)") {
             REQUIRE(normalize(v) == vector(1, 0, 0));
@@ -227,7 +227,7 @@ SCENARIO("Normalizing vector(4, 0, 0) gives (1, 0, 0)", "") {
 
 SCENARIO("Normalizing vector(1, 2, 3)", "") {
     GIVEN("v ← vector(1, 2, 3)") {
-        Tuple v = vector(1, 2, 3);
+        Vector v = vector(1, 2, 3);
 
         THEN("normalize(v) = approximately vector(0.26726, 0.53452, 0.80178)") {
             REQUIRE(normalize(v) == vector(0.26726, 0.53452, 0.80178));
@@ -238,10 +238,10 @@ SCENARIO("Normalizing vector(1, 2, 3)", "") {
 
 SCENARIO("The magnitude of a normalized vector", "") {
     GIVEN("v ← vector(1, 2, 3)") {
-        Tuple v = vector(1, 2, 3);
+        Vector v = vector(1, 2, 3);
 
         WHEN("norm ← normalize(v)") {
-            Tuple norm = normalize(v);
+            Vector norm = normalize(v);
 
             THEN("magnitude(norm) = 1") {
                 REQUIRE(magnitude(norm) == Approx(1));
@@ -253,8 +253,8 @@ SCENARIO("The magnitude of a normalized vector", "") {
 
 SCENARIO("The dot product of two tuples", "") {
     GIVEN("a ← vector(1, 2, 3) & b ← vector(2, 3, 4)") {
-        Tuple a = vector(1, 2, 3);
-        Tuple b = vector(2, 3, 4);
+        Vector a = vector(1, 2, 3);
+        Vector b = vector(2, 3, 4);
 
         THEN("dot(a, b) = 20") {
             REQUIRE(dot(a, b) == Approx(20));
@@ -264,8 +264,8 @@ SCENARIO("The dot product of two tuples", "") {
 
 SCENARIO("The cross product of two vectors", "") {
     GIVEN("a ← vector(1, 2, 3) & b ← vector(2, 3, 4)") {
-        Tuple a = vector(1, 2, 3);
-        Tuple b = vector(2, 3, 4);
+        Vector a = vector(1, 2, 3);
+        Vector b = vector(2, 3, 4);
 
         THEN("cross(a, b) = vector(-1, 2, -1)") {
             REQUIRE(cross(a, b) == vector(-1, 2, -1));
