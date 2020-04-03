@@ -34,6 +34,26 @@ public:
     bool is_point() const { return w == 1; }
     bool is_vector() const { return w == 0; }
 
+    float dot(const Tuple& b) const {
+        return x*b.x + y*b.y + z*b.z + w*b.w;
+    }
+
+    float magnitude() const {
+        return std::sqrt(this->dot(*this));
+    }
+
+    Tuple normalize() const {
+        return *this / magnitude();
+    }
+
+    Tuple cross(const Tuple& b) const {
+        return Tuple::make_vector(
+                y * b.z - z * b.y,
+                z * b.x - x * b.z,
+                x * b.y - y * b.x
+        );
+    }
+
     Tuple operator+(const Tuple& other) const {
         return Tuple(x+other.x, y+other.y, z+other.z, w+other.w);
     }
@@ -72,30 +92,6 @@ public:
         return os;
     }
 };
-
-
-float dot(const Tuple& a, const Tuple& b) {
-    return a.x*b.x + a.y*b.y + a.z*b.z + a.w*b.w;
-}
-
-
-float magnitude(const Tuple& t) {
-    return std::sqrt(dot(t, t));
-}
-
-
-Tuple normalize(const Tuple& t) {
-    return t / magnitude(t);
-}
-
-
-Tuple cross(const Tuple& a, const Tuple& b) {
-    return Tuple::make_vector(
-            a.y * b.z - a.z * b.y,
-            a.z * b.x - a.x * b.z,
-            a.x * b.y - a.y * b.x
-    );
-}
 
 typedef Tuple Point;
 typedef Tuple Vector;

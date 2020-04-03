@@ -32,7 +32,7 @@ void output_position(int t, const Projectile& p) {
 int main() {
     Projectile p(
         Tuple::make_point(0, 1, 0),
-        normalize(Tuple::make_vector(1, 1, 0))
+        Tuple::make_vector(1, 1, 0).normalize()
     );
 
     Environment e(

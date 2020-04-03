@@ -171,7 +171,7 @@ SCENARIO("Computing the magnitude of vector(1, 0, 0)", "") {
         Vector v = vector(1, 0, 0);
 
         THEN("magnitude(v) = 1") {
-            REQUIRE(magnitude(v) == 1);
+            REQUIRE(v.magnitude() == 1);
         }
     }
 }
@@ -182,7 +182,7 @@ SCENARIO("Computing the magnitude of vector(0, 1, 0)", "") {
         Vector v = vector(0, 1, 0);
 
         THEN("magnitude(v) = 1") {
-            REQUIRE(magnitude(v) == 1);
+            REQUIRE(v.magnitude() == 1);
         }
     }
 }
@@ -193,7 +193,7 @@ SCENARIO("Computing the magnitude of vector(0, 0, 1)", "") {
         Vector v = vector(0, 0, 1);
 
         THEN("magnitude(v) = 1") {
-            REQUIRE(magnitude(v) == 1);
+            REQUIRE(v.magnitude() == 1);
         }
     }
 }
@@ -204,7 +204,7 @@ SCENARIO("Computing the magnitude of vector(1, 2, 3)", "") {
         Vector v = vector(1, 2, 3);
 
         THEN("magnitude(v) = √14") {
-            REQUIRE(magnitude(v) == Approx(std::sqrt(14)));
+            REQUIRE(v.magnitude() == Approx(std::sqrt(14)));
         }
     }
 }
@@ -215,7 +215,7 @@ SCENARIO("Computing the magnitude of vector(-1, -2, -3)", "") {
         Vector v = vector(-1, -2, -3);
 
         THEN("magnitude(v) = √14") {
-            REQUIRE(magnitude(v) == Approx(std::sqrt(14)));
+            REQUIRE(v.magnitude() == Approx(std::sqrt(14)));
         }
     }
 }
@@ -225,7 +225,7 @@ SCENARIO("Normalizing vector(4, 0, 0) gives (1, 0, 0)", "") {
         Vector v = vector(4, 0, 0);
 
         THEN("normalize(v) = vector(1, 0, 0)") {
-            REQUIRE(normalize(v) == vector(1, 0, 0));
+            REQUIRE(v.normalize() == vector(1, 0, 0));
         }
     }
 }
@@ -235,7 +235,7 @@ SCENARIO("Normalizing vector(1, 2, 3)", "") {
         Vector v = vector(1, 2, 3);
 
         THEN("normalize(v) = approximately vector(0.26726, 0.53452, 0.80178)") {
-            REQUIRE(normalize(v) == vector(0.26726, 0.53452, 0.80178));
+            REQUIRE(v.normalize() == vector(0.26726, 0.53452, 0.80178));
         }
     }
 }
@@ -246,10 +246,10 @@ SCENARIO("The magnitude of a normalized vector", "") {
         Vector v = vector(1, 2, 3);
 
         WHEN("norm ← normalize(v)") {
-            Vector norm = normalize(v);
+            Vector norm = v.normalize();
 
             THEN("magnitude(norm) = 1") {
-                REQUIRE(magnitude(norm) == Approx(1));
+                REQUIRE(norm.magnitude() == Approx(1));
             }
         }
     }
@@ -262,7 +262,7 @@ SCENARIO("The dot product of two tuples", "") {
         Vector b = vector(2, 3, 4);
 
         THEN("dot(a, b) = 20") {
-            REQUIRE(dot(a, b) == Approx(20));
+            REQUIRE(a.dot(b) == Approx(20));
         }
     }
 }
@@ -273,10 +273,10 @@ SCENARIO("The cross product of two vectors", "") {
         Vector b = vector(2, 3, 4);
 
         THEN("cross(a, b) = vector(-1, 2, -1)") {
-            REQUIRE(cross(a, b) == vector(-1, 2, -1));
+            REQUIRE(a.cross(b) == vector(-1, 2, -1));
         }
         AND_THEN("cross(b, a) = vector(1, -2, 1)") {
-            REQUIRE(cross(b, a) == vector(1, -2, 1));
+            REQUIRE(b.cross(a) == vector(1, -2, 1));
         }
     }
 }
