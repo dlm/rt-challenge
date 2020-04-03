@@ -2,18 +2,7 @@
 
 #include <csci441/tuple.h>
 
-Point point(float x, float y, float z) {
-    return Tuple::make_point(x, y, z);
-}
-
-Vector vector(float x, float y, float z) {
-    return Tuple::make_vector(x, y, z);
-}
-
-Vector color(float x, float y, float z) {
-    return Tuple::make_color(x, y, z);
-}
-
+#include "helpers.h"
 
 SCENARIO("A tuple with w=1.0 is a point", "") {
     GIVEN("a ← tuple(4.3, -4.2, 3.1, 1.0)") {

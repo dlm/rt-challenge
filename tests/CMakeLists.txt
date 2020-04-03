@@ -5,5 +5,5 @@ add_library(Catch INTERFACE)
 
 # aggreage all the test files
 FILE(GLOB TEST_FILES *_test.cpp)
-add_executable(tests main.cpp ${TEST_FILES})
+add_executable(tests main.cpp helpers.cpp ${TEST_FILES})
 target_link_libraries(tests Catch)
