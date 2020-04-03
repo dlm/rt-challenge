@@ -70,6 +70,10 @@ public:
         return Tuple(s*x,s*y,s*z,s*w);
     }
 
+    Tuple operator*(const Tuple other) const {
+        return make_color(r*other.r, g*other.g, b*other.b);
+    }
+
     Tuple operator/(float s) const {
         return (*this) * (1/s);
     }
