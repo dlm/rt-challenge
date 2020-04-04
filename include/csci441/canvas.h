@@ -3,6 +3,8 @@
 
 #include <cmath>
 #include <sstream>
+#include <regex>
+
 #include <csci441/tuple.h>
 
 class Canvas {
@@ -15,8 +17,27 @@ private:
         return std::fmax(0, std::fmin(c, 1));
     }
 
-    int to_color(float c) const {
+    int to_target(float c) const {
         return std::ceil(DEPTH * clamp(c));
+    }
+
+    std::string rtrim(const std::string& s) const {
+        return std::regex_replace(s, std::regex("\\s+$"), std::string(""));
+    }
+
+    void flush(std::ostringstream& os, std::ostringstream& buffer) const {
+        os << rtrim(buffer.str()) << std::endl;
+    }
+
+    void write(std::ostringstream& os, std::ostringstream& buffer, float component) const {
+        const int LINELEN = 70;
+        if (buffer.str().size() > LINELEN-3) {
+            flush(os, buffer);
+
+            buffer.str("");
+            buffer.clear();
+        }
+        buffer << to_target(component) << " ";
     }
 
 public:
@@ -54,13 +75,14 @@ public:
         os << DEPTH << std::endl;
 
         for (int row = 0 ; row < height() ; ++row) {
+            std::ostringstream buffer;
             for (int col = 0 ; col < width() ; ++col) {
                 Color c = at(col, row);
-                os << to_color(c.r) << " ";
-                os << to_color(c.g) << " ";
-                os << to_color(c.b) << ((col < width()-1) ? " " : "");
+                write(os, buffer, c.r);
+                write(os, buffer, c.g);
+                write(os, buffer, c.b);
             }
-            os << std::endl;
+            flush(os, buffer);
         }
         return os.str();
     }

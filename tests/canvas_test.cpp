@@ -60,20 +60,38 @@ SCENARIO("Constructing the PPM pixel data", "") {
     }
 }
 
-//
-// Scenario: Splitting long lines in PPM files
-//   Given c ← canvas(10, 2)
-//   When every pixel of c is set to color(1, 0.8, 0.6)
-//     And ppm ← canvas_to_ppm(c)
-//   Then lines 4-7 of ppm are
-//     """
-//     255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204
-//     153 255 204 153 255 204 153 255 204 153 255 204 153
-//     255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204
-//     153 255 204 153 255 204 153 255 204 153 255 204 153
-//     """
-//
-// Scenario: PPM files are terminated by a newline character
-//   Given c ← canvas(5, 3)
-//   When ppm ← canvas_to_ppm(c)
-//   Then ppm ends with a newline character
+
+SCENARIO("Splitting long lines in PPM files", "") {
+    GIVEN("c ← canvas(10, 2)") {
+        Canvas c(10, 2);
+        WHEN("every pixel of c is set to color(1, 0.8, 0.6) & ppm ← canvas_to_ppm(c)") {
+            for (int row = 0 ; row < c.height() ; ++row) {
+                for (int col = 0 ; col < c.width() ; ++col) {
+                    c.set(col, row, color(1, 0.8, 0.6));
+                }
+            }
+
+            THEN("lines ppm are as expected") {
+                std::string expected = "P3\n10 2\n255\n255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204\n153 255 204 153 255 204 153 255 204 153 255 204 153\n255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204\n153 255 204 153 255 204 153 255 204 153 255 204 153\n";
+                std::string ppm = c.to_ppm();
+                REQUIRE(ppm == expected);
+            }
+        }
+    }
+}
+
+
+SCENARIO("PPM files are terminated by a newline character", "") {
+    GIVEN("c ← canvas(5, 3)") {
+        Canvas c(5, 3);
+
+        WHEN("ppm ← canvas_to_ppm(c)") {
+            std::string ppm = c.to_ppm();
+
+            THEN("Then ppm ends with a newline character") {
+                char last = ppm.back();
+                REQUIRE(last == '\n');
+            }
+        }
+    }
+}
