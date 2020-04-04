@@ -61,7 +61,9 @@ public:
     }
 
     void set(int col, int row, const Color& c) {
-        data[row][col] = c;
+        if (0 <= col && col < width() && 0 <= row && row <= height()) {
+            data[row][col] = c;
+        }
     }
 
     Color at(int col, int row) const {
